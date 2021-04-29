@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-background-size="10%"
+          data-background-position="2% 5%"
+          data-background-image="https://jennz0r.github.io/translating-react/lib/img/react.svg"
+        >
+          <h1 style="color: #61dafb">Capacitación de React</h1>
+        </section>
+        <section>
+          <section
+            data-background-size="20%"
+            data-background-position="95% 50%"
+            data-background-image="https://media.giphy.com/media/ji6zzUZwNIuLS/giphy.gif"
+          >
+            <h1 style="color: #61dafb">¿Qué es React?</h1>
+          </section>
+          <section>
+            <p>
+              Es una biblioteca escrita en JavaScript, desarrollada en Facebook
+              para facilitar la creación de
+              <b style="color: #61dafb"
+                >componentes interactivos y reutilizables</b
+              >, para interfaces de usuario.
+            </p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1 style="color: #61dafb">¿Qué es un Componente?</h1>
+          </section>
+          <section
+            data-background-size="contain"
+            data-background-image="https://media.giphy.com/media/f7STAwvEml1eIf0FEq/giphy.gif"
+          ></section>
+          <section>
+            <ul>
+              <li>
+                Son piezas o partes que en conjunto conforman una estructura.
+              </li>
+              <li>
+                Dentro de React un componente maneja su propia funcionalidad,
+                propiedades y estados.
+              </li>
+              <li>
+                Estas piezas se crean usando una sintaxis llamada JSX (es una
+                extension de Javascript) permitiendo escribir HTML.
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section
+            data-background-size="30%"
+            data-background-position="95% 10%"
+            data-background-image="https://media.giphy.com/media/UxNTT095uL0go/giphy.gif"
+          >
+            <h1 style="color: #61dafb">Creando Componentes</h1>
+          </section>
+          <section>
+            <h3 style="color: #61dafb">Tips al momento de crear componentes</h3>
+            <ol>
+              <li>
+                Los nombres de los componentes siempre deben iniciar con
+                Mayúscula.
+              </li>
+              <li>Asegurate de que se este exportando correctamente.</li>
+              <li>
+                Usa una funcion regular para poder ubicar los nombres de los
+                componentes al momento de debuggear.
+              </li>
+            </ol>
+          </section>
+          <section>
+            <pre><code data-trim>
+				  function Test(){
+				    return <h1>Titulo: Hola</h1>
+				  }
+  
+				  export default Test;
+				  </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim><script type="text/template">
+				function Test(){
+				  return (
+				    <>
+				      <h1>Titulo: Hola</h1>
+				      <p>Descripción: Soy un componente :)</p>
+				    </>
+				  )
+				}
+
+				export default Test;
+				</script></code></pre>
+          </section>
+          <section>
+            <h3 style="color: #61dafb">Props</h3>
+            <p>
+              Es un objeto que contiene las propiedades que le pasamos al
+              componente.
+            </p>
+          </section>
+          <section>
+            <pre><code
+				data-line-numbers="1|4-5|13|16-17" data-trim><script type="text/template">
+				function Test(props){
+				  return (
+				    <>
+				      <h1>Titulo: {props.titulo}</h1>
+				      <p>Descripción: {props.descripcion}</p>
+				    </>
+				  )
+				}
+
+				export default Test;
+
+
+				function Test({titulo, descripcion}){
+					return (
+					  <>
+						<h1>Titulo: {titulo}</h1>
+						<p>Descripción: {descripcion}</p>
+					  </>
+					)
+				  }
+  
+				  export default Test;
+				</script></code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1 style="color: #61dafb">Hora de usar el componente</h1>
+          </section>
+          <section>
+            <p style="color: red">
+              Importante : nos manejamos con import y export , cada vez que
+              necesitemos usar un componente, un hook , etc
+            </p>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="1|3|4,9|5-8|12"><script type="text/template">
+				import Test from './components/Test';
+
+				function App(){
+				  return (
+				    <>
+				      <Test titulo="Hola" descripcion="Soy un componente :)" />
+				      <Test titulo="Saludos" descripcion="Amigos" />
+				    </>
+				  )
+				}
+  
+				export default App;
+				</script></code></pre>
+          </section>
+        </section>
+        <section>
+          <section
+            data-background-size="30%"
+            data-background-position="5% 50%"
+            data-background-image="https://media.giphy.com/media/B4ZgcoPTHYXL2/giphy.gif"
+          >
+            <h1 style="color: #61dafb">Hooks</h1>
+          </section>
+          <section>
+            <blockquote>
+              "Hooks son una nueva característica en React 16.8. Estos te
+              permiten usar el estado y otras características de React sin
+              escribir una clase."
+            </blockquote>
+            <p>
+              En otras palabras; te permite enganchar tus componentes a
+              funciones propias que te ofrece React.
+            </p>
+          </section>
+          <section>
+            <h3 style="color: #61dafb">
+              ¿Qué características o funciones te ofrece react?
+            </h3>
+            <h5>Algunas de estas son</h5>
+            <ul>
+              <li>useState</li>
+              <li>useEffect</li>
+              <li>useRef</li>
+              <li>useReducer</li>
+              <li>useMemo</li>
+              <li>Customizados</li>
+            </ul>
+            <div>
+              <a
+                target="_blank"
+                href="https://es.reactjs.org/docs/hooks-reference.html"
+                >Para ver la lista completa de hooks</a
+              >
+            </div>
+          </section>
+
+          <section
+            data-background-size="25%"
+            data-background-position="95% 5%"
+            data-background-image="https://media.giphy.com/media/Dh9jqNm8YcGVG/giphy.gif"
+          >
+            <p style="font-size: 56px; color: #61dafb">useState</p>
+            <p>Para manejar el estado de un componente</p>
+            <p>
+              El useState se usa cuando surge la necesidad de que ocurra o
+              cambie algo visualmente dependiendo de la accion del usuario.
+            </p>
+          </section>
+          <section>
+            <pre><code data-trim>
+			const [state, setState] = useState(valorInicial)
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				function App() {		
+				  return (
+				    <div>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				function App() {		
+				  return (
+				    <div>
+				      <button>Click aqui</button>
+				      <p>Estoy activo</p>
+				      <p>Estoy inactivo</p>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				import { useState } from "react";
+
+				function App() {		
+				  return (
+				    <div>
+				      <button>Click aqui</button>
+				      <p>Estoy activo</p>
+				      <p>Estoy inactivo</p>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				import { useState } from "react";
+
+				function App() {	
+				  const [valor, setValor] = useState(false);
+					
+				  return (
+				    <div>
+				      <button>Click aqui</button>
+				      <p>Estoy activo</p>
+				      <p>Estoy inactivo</p>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				import { useState } from "react";
+
+				function App() {	
+				  const [valor, setValor] = useState(false);
+
+				  return (
+				    <div>
+				      <button onClick={alClickear}>Click aqui</button>
+				      <p>Estoy activo</p>
+				      <p>Estoy inactivo</p>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				import { useState } from "react";
+
+				function App() {	
+				  const [valor, setValor] = useState(false);
+				  
+				  const alClickear = () => {
+				    setValor(!valor)
+				  }
+
+				  return (
+				    <div>
+				      <button onClick={alClickear}>Click aqui</button>
+				      <p>Estoy activo</p>
+				      <p>Estoy inactivo</p>
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+          </section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-line-numbers>
+				import { useState } from "react";
+
+				function App() {	
+				  const [valor, setValor] = useState(false);
+				  
+				  const alClickear = () => {
+				    setValor(!valor)
+				  }
+
+				  return (
+				    <div>
+				      <button onClick={alClickear}>Click aqui</button>
+				      {valor? <p>Estoy activo</p> : <p>Estoy inactivo</p>}
+				    </div>
+				  );
+				}
+				
+				export default App;
+			</code></pre>
+            <div>
+              <a target="_blank" href="https://codesandbox.io/s/usestate-3886h"
+                >Enlace a codesandbox del ejercicio</a
+              >
+            </div>
+          </section>
+        </section>
+        <section>
+          <section
+            data-background-size="25%"
+            data-background-position="2% 5%"
+            data-background-image="https://media.giphy.com/media/QaDc2Wn7tfLFu/giphy.gif"
+          >
+            <h1 style="color: #61dafb">Styled Components</h1>
+          </section>
+          <section style="text-align: justify">
+            <p>
+              Es una librería que nos permite estilizar nuestros componentes de
+              React
+            </p>
+            <p style="color: #61dafb">Características :</p>
+            <ul>
+              <li>Es un componente con superpoderes de CSS.</li>
+            </ul>
+          </section>
+          <section data-auto-animate>
+            <h3 style="color: #61dafb">Usando Styled Components</h3>
+            <p>AppStyled.js</p>
+            <pre data-id="code-styled"><code data-trim data-line-numbers>
+				import styled from "styled-components";
+			</code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <p>AppStyled.js</p>
+            <pre
+              data-id="code-styled"
+            ><code data-trim data-line-numbers><script type="text/template">
+				
+				import styled from "styled-components";
+                
+				const AppStyle = styled.div`
+				`;
+
+				export  default AppStyle;
+			</script></code></pre>
+          </section>
+          <section data-auto-animate>
+            <p>AppStyled.js</p>
+            <pre
+              data-id="code-styled"
+            ><code data-trim data-line-numbers><script type="text/template">
+				import styled from "styled-components";
+                
+				const AppStyle = styled.div`
+				  p {
+				    font-size: 20px;
+				    padding: 10px;
+				    color: white;
+				    font-weight: 600;
+			        &.activo {
+             background-color: green;
+			        }
+			        &.inactivo {
+					  background-color: red;
+           }
+				  }
+				`;
+
+				export  default AppStyle;
+
+
+			</script></code></pre>
+          </section>
+          <section>
+            <p>App.js</p>
+            <pre><code data-trim data-line-numbers="2|12,19|14-18"><script type="text/template">
+				import { useState } from "react";
+				import AppStyle from "./AppStyle";
+
+				function App() {	
+				  const [valor, setValor] = useState(false);
+				  
+				  const alClickear = () => {
+				    setValor(!valor)
+				  }
+
+				  return (
+				    <AppStyle>
+				      <button onClick={alClickear}>Click aqui</button>
+				      {valor ? (
+					<p className="activo">Estoy activo</p>
+					) : (
+					<p className="inactivo">Estoy inactivo</p>
+				      )}
+				    </AppStyle>
+				  );
+				}
+				
+				export default App;
+
+			</script></code></pre>
+            <a href="https://codesandbox.io/s/style-components-4rowl"
+              >Para ver el ejercicio en CodeSandbox</a
+            >
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1 style="color: #61dafb">Estructura de carpetas</h1>
+          </section>
+          <section>
+            <img src="images/folder_structure.jpeg" alt="folder structure" />
+          </section>
+          <section>
+            <img
+              src="images/component_structure.jpeg"
+              alt="component structure"
+            />
+          </section>
+        </section>
+        <section>
+          <section
+            data-background-size="30%"
+            data-background-position="50% 5%"
+            data-background-image="https://media.giphy.com/media/QMkPpxPDYY0fu/giphy.gif"
+          >
+            <h1 style="color: #61dafb">Gracias!</h1>
+            <p style="font-size: 56px">25Watts</p>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
